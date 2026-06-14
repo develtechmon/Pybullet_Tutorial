@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<robot name="balancebot">
+
+  <material name="blue">
+    <color rgba="0.1 0.4 0.8 1.0"/>
+  </material>
+  <material name="dark_grey">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  <material name="green">
+    <color rgba="0.1 0.8 0.2 1.0"/>
+  </material>
+
+  <!-- ═══════════════════════════════════
+       CHASSIS
+       Origin is now at WHEEL AXLE level
+       (not geometric centre of box)
+
+       Box is 0.20m tall:
+         bottom = -0.0575m below axle  (axle sits 5.75cm from bottom)
+         top    = +0.1425m above axle
+
+       Why axle at origin?
+         spawn_height = wheel_radius = 0.0425m
+         wheel bottom = 0.0425 - 0.0425 = 0.0  (exactly ground)
+         Simple. No math needed in scripts.
+  ═══════════════════════════════════════ -->
+  <link name="base_link">
+    <inertial>
+      <mass value="0.5"/>
+      <origin xyz="0 0 0.0713"/>
+      <!-- CoM is at geometric centre of box = 0.10 - 0.0575 = 0.0425m
+           above axle. Using 0.0713 to account for battery weight higher up -->
+      <inertia ixx="0.00183" ixy="0.0" ixz="0.0"
+               iyy="0.00248" iyz="0.0"
+               izz="0.000967"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.0713"/>
+      <!-- Visual box centred at geometric centre of box above axle -->
+      <geometry>
+        <box size="0.06 0.14 0.20"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0713"/>
+      <geometry>
+        <box size="0.06 0.14 0.20"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ═══════════════════════════════════
+       IMU at body centre
+       Z = 0.0713 (geometric centre of box)
+  ═══════════════════════════════════════ -->
+  <link name="imu_link">
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.000001" ixy="0.0" ixz="0.0"
+               iyy="0.000001" iyz="0.0"
+               izz="0.000001"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.02 0.02 0.01"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <!-- Front face of box, at geometric centre height -->
+    <origin xyz="0.031 0.0 0.0713" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ═══════════════════════════════════
+       LEFT WHEEL
+       Origin = wheel axle = base_link origin
+       So wheel joint Z = 0.0 (axle level)
+       Y = +0.08 (half body width + half tyre width)
+  ═══════════════════════════════════════ -->
+  <link name="left_wheel">
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.0000243" ixy="0.0" ixz="0.0"
+               iyy="0.0000243" iyz="0.0"
+               izz="0.0000452"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <cylinder radius="0.0425" length="0.02"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.0425" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <!-- Z=0.0 = axle level, Y=+0.08 = left side -->
+    <origin xyz="0.0 0.08 0.0" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="0.01" friction="0.01"/>
+  </joint>
+
+  <!-- ═══════════════════════════════════
+       RIGHT WHEEL
+       Mirror of left: Y = -0.08
+  ═══════════════════════════════════════ -->
+  <link name="right_wheel">
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.0000243" ixy="0.0" ixz="0.0"
+               iyy="0.0000243" iyz="0.0"
+               izz="0.0000452"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <cylinder radius="0.0425" length="0.02"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.0425" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <!-- Z=0.0 = axle level, Y=-0.08 = right side -->
+    <origin xyz="0.0 -0.08 0.0" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="0.01" friction="0.01"/>
+  </joint>
+
+</robot>
