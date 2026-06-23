@@ -83,9 +83,15 @@ void kalman_1d(float& KalmanState, float& KalmanUncertainty,
 // float I_gain = 20;
 // float D_gain = 0.04;
 
-float P_gain = 40.0;
+// Mecanum Wheel 95mm
+float P_gain = 25.0;
 float I_gain = 20;
-float D_gain = 0.07;
+float D_gain = 0.05;
+
+// Original 65mm wheel
+// float P_gain = 40.0;
+// float I_gain = 20;
+// float D_gain = 0.07;
 
 float DesiredAnglePitch = 0.0;   // SET THIS from find_vertical_offset
 
