@@ -86,7 +86,7 @@ void kalman_1d(float& KalmanState, float& KalmanUncertainty,
 // Mecanum Wheel 95mm
 float P_gain = 25.0;
 float I_gain = 20;
-float D_gain = 0.05;
+float D_gain = 0.08;
 
 // Original 65mm wheel
 // float P_gain = 40.0;
