@@ -159,8 +159,16 @@ void update_move_state()
     }
     else
     {
-        DesiredAnglePitch = 0.0;
-        DesiredAnglePitch = DesiredAnglePitch * 0.90;
+        // Orignal Version
+        //DesiredAnglePitch = 0.0;
+        //DesiredAnglePitch = DesiredAnglePitch * 0.90;
+
+        // Proposed Version - Yet to try
+        DesiredAnglePitch = DesiredAnglePitch * 0.90; //smooth return
+        if (fabs(DesiredAnglePitch) < 0.1)
+        {
+         DesiredAnglePitch = 0.0; // avoid drift
+        }
     }
 
     // ── Yaw [3] → left / right ──────────────────────────────
