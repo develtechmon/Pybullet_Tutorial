@@ -99,11 +99,11 @@ float AnglePitch;
 // ─── Calibration — RE-RUN these on the NEW chassis! ─────────────
 // Every chassis has its own IMU mounting orientation and slight
 // gyro drift. Values below are for THIS specific robot.
-float RateCalibrationRoll  = -5.24;
-float RateCalibrationPitch =  0.87;
-float RateCalibrationYaw   = -0.68;
-float AccXCalibration      =  0.05;
-float AccYCalibration      =  0.02;
+float RateCalibrationRoll  = -4.93;
+float RateCalibrationPitch =  0.93;
+float RateCalibrationYaw   = -0.70;
+float AccXCalibration      =  0.04;
+float AccYCalibration      = -0.04;
 float AccZCalibration      =  0.05;
 
 // ─── Kalman filter (unchanged from DC bot) ──────────────────────
@@ -138,8 +138,8 @@ void kalman_1d(float& KalmanState, float& KalmanUncertainty,
 // of the output anyway. What actually reaches the motor is the
 // slew-limited version, not the raw PID output.
 float P_gain = 1800.0;
-float I_gain = 2000;
-float D_gain = 25;
+float I_gain = 1000;
+float D_gain = 5;
 
 // Mechanical balance point of THIS chassis. Your DC bot liked
 // -1.3 to -2.3 deg. This one is different because of stepper motor
