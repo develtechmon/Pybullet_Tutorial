@@ -125,8 +125,15 @@ void read_receiver(int *channelValues)
 // ================================================================
 //  RC SETTINGS — same values as your state machine
 // ================================================================
-const float FORWARD_ANGLE_OFFSET  =  8.0;  // same as your state machine
-const float BACKWARD_ANGLE_OFFSET = -8.0;  // same as your state machine
+
+// For large wheel
+const float FORWARD_ANGLE_OFFSET  =  10.0;  // same as your state machine
+const float BACKWARD_ANGLE_OFFSET = -10.0;  // same as your state machine
+
+// mecanum wheel
+//const float FORWARD_ANGLE_OFFSET  =  8.0;  // same as your state machine
+//const float BACKWARD_ANGLE_OFFSET = -8.0;  // same as your state machine
+
 const float MAX_TURN_BIAS         =  60.0; // same as your state machine
 const int   DEAD_ZONE             =  80;   // stick center tolerance
 
@@ -159,7 +166,7 @@ void update_move_state()
     }
     else
     {
-        DesiredAnglePitch = 0.0;
+        // DesiredAnglePitch = 0.0;
         DesiredAnglePitch = DesiredAnglePitch * 0.90;
     }
 
