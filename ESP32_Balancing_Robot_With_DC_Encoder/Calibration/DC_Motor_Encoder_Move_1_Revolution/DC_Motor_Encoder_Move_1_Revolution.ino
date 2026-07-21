@@ -16,7 +16,7 @@ volatile long pulseCount = 0;
 int motorSpeed = 50;   // 0 to 255
 long targetPulse = 330; // 11 pulses x 30 gearbox = 330 pulses
 
-bool motorRunning = false;
+bool motorRunning = false;c:\Users\lukas\Desktop\My_Project\To_Upload\Pybullet_Tutorial\ESP32_Balancing_Robot_With_DC_Encoder\Branches\Official\ESP32_Balancing_Robot_With_DC_Encoder_HuskyLens\ESP32_Balancing_Robot_With_DC_Encoder_HuskyLens_v1\ESP32_~1.INO
 
 // This function runs automatically when encoder A detects a pulse
 void IRAM_ATTR readEncoder() {
