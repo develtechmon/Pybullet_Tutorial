@@ -217,7 +217,7 @@ class BalanceBotEnv(gym.Env):
                        self.observation_space.high)
 
     def _apply_action(self, action):
-        for joint_idx, raw_action in zip([1, 2], action):
+        for joint_idx, raw_action in zip([2, 3], action):
             # Motor deadband — SPG30 won't respond below 10% PWM
             if abs(raw_action) < self.MOTOR_DEADBAND:
                 target_vel = 0.0
