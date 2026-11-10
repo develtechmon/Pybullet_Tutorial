@@ -162,6 +162,9 @@ class BalanceBotEnv(gym.Env):
             physicsClientId=self.physicsClient
         )
 
+        for i in range(p.getNumJoints(self.robot)):
+            print(i, p.getJointInfo(self.robot, i)[1].decode())
+            
         for joint_idx in [1, 2]:
             p.changeDynamics(
                 self.robot, joint_idx,

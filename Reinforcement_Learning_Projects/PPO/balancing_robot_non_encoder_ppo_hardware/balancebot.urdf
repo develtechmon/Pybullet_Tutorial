@@ -165,6 +165,7 @@
     <parent link="base_link"/>
     <child link="left_wheel"/>
     <!--
+      y length = 0.15m + gap (2.3cm) + gap (2.3cm) = 0.203m
       y = -wheelbase/2 = -(0.203/2) = -0.1015m
       Wheelbase derivation: box_half(7.85cm) + gap(2.3cm) = 10.15cm
     -->

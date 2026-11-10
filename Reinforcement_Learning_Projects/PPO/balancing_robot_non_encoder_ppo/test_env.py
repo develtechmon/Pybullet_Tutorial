@@ -44,7 +44,6 @@ print(f"  pitch         = {np.degrees(obs[0]):6.2f} deg")
 print(f"  pitch_rate    = {obs[1]:6.3f} rad/s")
 print(f"  left_vel      = {obs[2]:6.3f} rad/s")
 print(f"  right_vel     = {obs[3]:6.3f} rad/s")
-print(f"  avg_wheel_pos = {obs[4]:6.3f} rad")
 
 print(f"\n{'Step':>5} | {'Pitch(deg)':>10} | {'Reward':>8} | {'Total':>9}")
 print("-" * 42)
