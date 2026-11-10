@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "**/.jj": true,
+        "balancing_robot_non_encoder_ppo_hardware": true,
+        "balancing_robot_non_encoder_ppo": true
+    },
+    "hide-files.files": [],
+    "python-envs.defaultEnvManager": "ms-python.python:system"
+}
